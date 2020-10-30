@@ -14,7 +14,7 @@ if [ ! -f "/usr/local/bin/geckodriver" ] && [ ! -f "/usr/bin/geckodriver" ] && [
     rm geckodriver-*-linux64.tar.gz
     chmod +x geckodriver
     sudo mv geckodriver /usr/local/bin/
-    echo 'export PATH=$PATH:/usr/local/bin/geckodriver' >>~/.bashrc
+    echo 'export PATH=$PATH:/usr/local/bin/geckodriver' >> ~/.bashrc
     source ~/.bashrc
 
     echo 'GeckoDriver has been successfully installed!'

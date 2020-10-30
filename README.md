@@ -47,8 +47,6 @@ Zoom App Configuration:
 
 After which, since this is an OAuth app, we would need to install the app manually on our Zoom account for the very first time (due to security reasons) by logging in into our Zoom Marketplace account and then going to `https://marketplace.zoom.us/develop/apps/<app-id>/activation` to click the `Install` button. Click the `Authorize` button when prompted.
 
-> If signing in using a Google account, ensure that less secure app access is allowed [here](https://myaccount.google.com/lesssecureapps). If access into the Google account is still not allowed, try opening up a new window and log into [this webpage](https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?response_type=code&redirect_uri=https%3A%2F%2Fdevelopers.google.com%2Foauthplayground&client_id=407408718192.apps.googleusercontent.com&scope=email) first before going back to the Zoom website to try logging in using the specified Google account again. The `client_id` specified in the URL is of Google's OAuth 2.0 Playground service.
-
 ##### Zoom Meeting Setup (Admin)
 
 We will be using Zoom Meetings for classroom lessons (instead of Webinars).
@@ -118,6 +116,8 @@ python3 zoom.py
 ```
 
 Login to our Zoom account on the popped-up browser that appeared. Do take note that access tokens expire after 1 hour.
+
+> If signing in using a Google account, ensure that less secure app access is allowed [here](https://myaccount.google.com/lesssecureapps). If access into the Google account is still not allowed, try opening up a new window and log into [this webpage](https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?response_type=code&redirect_uri=https%3A%2F%2Fdevelopers.google.com%2Foauthplayground&client_id=407408718192.apps.googleusercontent.com&scope=email) first before going back to the Zoom website to try logging in using the specified Google account again. The `client_id` specified in the URL is of Google's OAuth 2.0 Playground service.
 
 ##### Zoom Live Stream Data
 

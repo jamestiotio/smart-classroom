@@ -17,7 +17,7 @@ if [ ! -f "/usr/local/bin/geckodriver" ] && [ ! -f "/usr/bin/geckodriver" ] && [
 
     if ! grep -q 'export PATH=$PATH:/usr/local/bin/geckodriver' ~/.bashrc; then
 
-        echo 'export PATH=$PATH:/usr/local/bin/geckodriver' >>~/.bashrc
+        echo 'export PATH=$PATH:/usr/local/bin/geckodriver' >> ~/.bashrc
         source ~/.bashrc
 
     fi

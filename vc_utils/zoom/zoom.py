@@ -8,20 +8,26 @@ import sys
 import time
 import base64
 from selenium import webdriver
+from selenium.common.exceptions import WebDriverException, NoSuchElementException
 import requests
 import settings
 
 # Get user authorization code and access token
 auth_code_url = f"https://zoom.us/oauth/authorize?response_type=code&client_id={settings.client_id}&redirect_uri={settings.redirect_uri}"
+webdriver_exists = False
 
 for WEB_DRIVER in (webdriver.Firefox, webdriver.Chrome):
     try:
         driver = WEB_DRIVER()
         driver.quit()
+        webdriver_exists = True
         break
-    except Exception as e:
-        print("Exception %s" % str(e))
-        sys.exit(1)
+    except WebDriverException as e:
+        pass
+
+if not webdriver_exists:
+    print("No webdriver found! Quitting...")
+    sys.exit(1)
 
 if isinstance(driver, webdriver.firefox.webdriver.WebDriver):
     options = webdriver.FirefoxOptions()
@@ -35,9 +41,18 @@ invalid_msg = ""
 while invalid_msg == "":
     try:
         invalid_msg = driver.find_element_by_css_selector("span.error-message").text
-    except Exception as e:
+    except NoSuchElementException as e:
         print("Waiting for a successful login...")
         time.sleep(1)
+    except WebDriverException as e:
+        if str(e) == "Message: Failed to decode response from marionette\n":
+            print("The webdriver browser has been closed. Quitting...")
+        elif str(e) == "Message: Browsing context has been discarded\n":
+            print("The monitored Zoom login page tab has been closed. Quitting...")
+        else:
+            print(str(e))
+        driver.quit()
+        sys.exit(1)
 
 print("")
 
@@ -45,6 +60,7 @@ try:
     assert invalid_msg == "Invalid client_id: (4,700)"
 except AssertionError as e:
     print("Something went wrong after logging in! Quitting...")
+    driver.quit()
     sys.exit(1)
 
 auth_code = driver.current_url[37:]

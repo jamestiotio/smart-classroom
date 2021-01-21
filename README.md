@@ -119,6 +119,8 @@ Login to our Zoom account on the popped-up browser that appeared. Do take note t
 
 > If signing in using a Google account, ensure that less secure app access is allowed [here](https://myaccount.google.com/lesssecureapps). If access into the Google account is still not allowed, try opening up a new window and log into [this webpage](https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?response_type=code&redirect_uri=https%3A%2F%2Fdevelopers.google.com%2Foauthplayground&client_id=407408718192.apps.googleusercontent.com&scope=email) first before going back to the Zoom website to try logging in using the specified Google account again. The `client_id` specified in the URL is of Google's OAuth 2.0 Playground service.
 
+Improvements to the Zoom script could be made to take attendance as well (take inspiration from [here](https://github.com/billydh/zoom-reporting) and refer to [this](https://marketplace.zoom.us/docs/api-reference/zoom-api/reports/reportmeetingparticipants) as the Zoom API endpoint implementation).
+
 ##### Zoom Live Stream Data
 
 To start processing the video stream data:
